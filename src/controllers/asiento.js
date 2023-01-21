@@ -1,5 +1,5 @@
 const pool = require("../../database");
-const queries = require('../queries');
+const queries = require('../queries/asiento');
 
 const get = (req, res) => {
     pool.query(queries.get, (error, results) => {

@@ -1,6 +1,6 @@
 const express = require("express");
-const clientesRoute = require('./src/clientes/routes');
-const empleadosRoute = require('./src/empleados/routes');
+//const clientesRoute = require('./src/clientes/routes');
+//const empleadosRoute = require('./src/empleados/routes');
 //const fs = require('fs');
 //const https = require('https');
 const asientosRoute = require('./src/routes/asiento');
@@ -24,8 +24,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/v1/clientes', clientesRoute);
-app.use('/api/v1/empleados', empleadosRoute);
+//app.use('/api/v1/clientes', clientesRoute);
+//app.use('/api/v1/empleados', empleadosRoute);
 
 app.use('/api/asientos', asientosRoute);
 

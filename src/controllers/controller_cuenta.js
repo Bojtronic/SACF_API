@@ -9,30 +9,13 @@ const get = (req, res) => {
     });
 }
 
-
-
-
-
-
-
-
-
-
-const getById = (req, res) => {
-    const id = parseInt(req.params.id);
-    pool.query(queries.getById, [id], (error, results) => {
-        if (error) throw error;
-        res.status(200).json(results.rows);
-    });
-};
-
 const add = (req, res) => {
-    const { nombre, numero, domicilio } = req.body;
+    const { numero, nombre, tipo, tipo_detalle, descripcion, saldo, divisa, fecha_registro } = req.body;
     pool.query(queries.checkIdExists, [numero], (error, results) => {
         if (results.rows.length) {
             res.send("El numero ya existe");
         }
-        pool.query(queries.add, [nombre, numero, domicilio], (error, results) => {
+        pool.query(queries.add, [numero, nombre, tipo, tipo_detalle, descripcion, saldo, divisa, fecha_registro], (error, results) => {
             if (error) throw error;
             res.status(201).send("¡Creado exitosamente!");
         });
@@ -53,6 +36,31 @@ const remove = (req, res) => {
         });
     });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const getById = (req, res) => {
+    const id = parseInt(req.params.id);
+    pool.query(queries.getById, [id], (error, results) => {
+        if (error) throw error;
+        res.status(200).json(results.rows);
+    });
+};
+
+
 
 const update = (req, res) => {
     const id = parseInt(req.params.id);

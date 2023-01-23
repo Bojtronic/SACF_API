@@ -3,7 +3,7 @@ const express = require("express");
 //const empleadosRoute = require('./src/empleados/routes');
 //const fs = require('fs');
 //const https = require('https');
-const asientosRoute = require('./src/routes/asiento');
+const cuentasRoute = require('./src/routes/route_cuenta');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 //app.use('/api/v1/clientes', clientesRoute);
 //app.use('/api/v1/empleados', empleadosRoute);
 
-app.use('/api/asientos', asientosRoute);
+app.use('/api/cuentas', cuentasRoute);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 

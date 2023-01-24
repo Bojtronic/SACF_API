@@ -4,6 +4,8 @@ const express = require("express");
 //const fs = require('fs');
 //const https = require('https');
 const cuentasRoute = require('./src/routes/route_cuenta');
+const asientosRoute = require('./src/routes/route_asiento');
+const lineasAsientoRoute = require('./src/routes/route_lineaAsiento');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -28,6 +30,8 @@ app.use((req, res, next) => {
 //app.use('/api/v1/empleados', empleadosRoute);
 
 app.use('/api/cuentas', cuentasRoute);
+app.use('/api/asientos', asientosRoute);
+app.use('/api/lineasasiento', lineasAsientoRoute);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 

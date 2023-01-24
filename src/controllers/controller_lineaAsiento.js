@@ -1,5 +1,5 @@
 const pool = require("../../database");
-const queries = require('../queries/asiento');
+const queries = require('../queries/query_lineaAsiento');
 
 const get = (req, res) => {
     pool.query(queries.get, (error, results) => {
@@ -7,6 +7,32 @@ const get = (req, res) => {
         res.status(200).json(results.rows);
     });
 }
+
+
+const add = (req, res) => {
+    const { numero_asiento, numero_linea, id_cuenta, debito, credito, descripcion, impuesto, fecha_factura, proveedor } = req.body;
+    pool.query(queries.checkIdExists, [numero_asiento], (error, results) => {
+        if (results.rows.length) {
+            res.send("El numero ya existe");
+        }
+        pool.query(queries.add, [numero_asiento, numero_linea, id_cuenta, debito, credito, descripcion, impuesto, fecha_factura, proveedor], (error, results) => {
+            if (error) throw error;
+            res.status(201).send("¡Creado exitosamente!");
+        });
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+
 
 const getById = (req, res) => {
     const id = parseInt(req.params.id);
@@ -16,18 +42,6 @@ const getById = (req, res) => {
     });
 };
 
-const add = (req, res) => {
-    const { nombre, numero, domicilio } = req.body;
-    pool.query(queries.checkIdExists, [numero], (error, results) => {
-        if (results.rows.length) {
-            res.send("El numero ya existe");
-        }
-        pool.query(queries.add, [nombre, numero, domicilio], (error, results) => {
-            if (error) throw error;
-            res.status(201).send("¡Creado exitosamente!");
-        });
-    });
-};
 
 const remove = (req, res) => {
     const id = parseInt(req.params.id);

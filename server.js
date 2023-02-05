@@ -7,7 +7,7 @@ const lineasAsientoRoute = require('./src/routes/route_lineaAsiento');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const lista_de_origenes = ['https://sacf-2022.web.app/'];
+const lista_de_origenes = ['https://sacf-2022.web.app'];
 
 app.use(express.json());
 

@@ -12,8 +12,33 @@ const lista_de_origenes = ['https://sacf-2022.web.app/'];
 app.use(express.json());
 
 app.use(cors({origin:lista_de_origenes}));     //acceso limitado a una lista de origenes
-app.use(cors());    //acceso a todos los origenes, cualquier url
+//app.use(cors({origin:'*'}));    //acceso a todos los origenes, cualquier url
 
+
+/*
+https://www.section.io/engineering-education/how-to-use-cors-in-nodejs-with-express/
+
+const whitelist = ['https://sacf-2022.web.app']
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error())
+    }
+  }
+}
+
+app.get('/ingredients', cors(), (req, res, next) => {
+    res.send(ingredients);
+});
+*/
+
+app.use(cors({
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
+
+/*
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -26,7 +51,7 @@ app.use((req, res, next) => {
   );
   next();
 });
-
+*/
 
 app.use('/api/cuentas', cuentasRoute);
 app.use('/api/asientos', asientosRoute);

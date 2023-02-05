@@ -38,7 +38,7 @@ app.use(cors({
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }));
 
-/*
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -51,7 +51,7 @@ app.use((req, res, next) => {
   );
   next();
 });
-*/
+
 
 app.use('/api/cuentas', cuentasRoute);
 app.use('/api/asientos', asientosRoute);

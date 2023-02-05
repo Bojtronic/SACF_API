@@ -11,8 +11,8 @@ const lista_de_origenes = ['https://sacf-2022.web.app/'];
 
 app.use(express.json());
 
-app.use(cors({origin:lista_de_origenes}));     //acceso limitado a una lista de origenes
-//app.use(cors({origin:'*'}));    //acceso a todos los origenes, cualquier url
+//app.use(cors({origin:lista_de_origenes}));     //acceso limitado a una lista de origenes
+app.use(cors({origin:'*'}));    //acceso a todos los origenes, cualquier url
 
 
 /*

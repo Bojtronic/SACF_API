@@ -13,11 +13,12 @@ const add = (req, res) => {
     const { numero, fecha_creacion, divisa } = req.body;
     pool.query(queries.checkIdExists, [numero], (error, results) => {
         if (results.rows.length) {
-            res.send("El numero ya existe");
+            res.json("El numero ya existe");
+            return;
         }
         pool.query(queries.add, [numero, fecha_creacion, divisa], (error, results) => {
             if (error) throw error;
-            res.status(201).send("¡Creado exitosamente!");
+            res.status(201).json("¡Creado exitosamente!");
         });
     });
 };
